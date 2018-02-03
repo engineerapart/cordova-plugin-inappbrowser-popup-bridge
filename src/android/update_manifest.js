@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
 var fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    util = require('util');
+var inspect = function (obj) { return util.inspect(obj, false, Infinity, false); }
 
 module.exports = function (context) {
+    console.log(inspect(context));
     var deferral = context.requireCordovaModule('q').defer();
 
     var toolsAttribute = "xmlns:tools=\"http://schemas.android.com/tools\"";
@@ -15,7 +18,7 @@ module.exports = function (context) {
     var projectRoot = context.opts.projectRoot;
     var platformRoot = path.join(projectRoot, 'platforms/android');
     var manifestPath = path.join(platformRoot, 'AndroidManifest.xml');
-    //console.log("manifestPath: " + manifestPath);
+    console.log("manifestPath: " + manifestPath);
 
     fs.readFile(manifestPath, function(err, manifest) {
         if(err || !manifest){
@@ -40,11 +43,11 @@ module.exports = function (context) {
                 if (err) {
                     deferral.reject("Failed to write AndroidManifest.xml: " + err);
                 }
-                //console.log("wrote");
+                console.log("wrote");
                 deferral.resolve();
             });
         }else{
-            //console.log("no write required");
+            console.log("no write required");
             deferral.resolve();
         }
 

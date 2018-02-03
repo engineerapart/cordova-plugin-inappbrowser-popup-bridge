@@ -68,10 +68,10 @@
 
         <!-- PopupBridge -->
         <config-file target="config.xml" parent="/*">
-            <preference name="android-minSdkVersion" value="16" tools:overrideLibrary="com.braintreepayments.popupbridge" />
+            <preference name="android-minSdkVersion" value="19" tools:overrideLibrary="com.braintreepayments.popupbridge" />
         </config-file>
 
-        <framework src="com.braintreepayments:popup-bridge:0.1.+" />
+        <framework src="com.braintreepayments:popup-bridge:1.0.+" />
 
         <hook type="after_prepare" src="src/android/update_manifest.js" />
 
